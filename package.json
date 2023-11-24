@@ -1,0 +1,22 @@
+{
+  "name": "my-lib",
+  "author": "Les Fabricants",
+  "repository": "git@github.com:Passiverecords/starter-kit-lib.git",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "bin": {
+    "my-lib": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.3.2"
+  }
+}
