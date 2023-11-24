@@ -1,22 +1,24 @@
 {
-  "name": "my-lib",
+  "name": "tsgraph",
   "author": "Les Fabricants",
-  "repository": "git@github.com:Passiverecords/starter-kit-lib.git",
+  "repository": "git@github.com:LesFabricants/typescript-graph.git",
   "version": "1.0.0",
   "description": "",
+  "license": "MTI",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist/"
   ],
-  "bin": {
-    "my-lib": "./dist/index.js"
-  },
   "scripts": {
-    "build": "tsc"
+    "prebuild": "barrelsby -d src --delete",
+    "build": "npx tsc"
   },
-  "license": "ISC",
   "dependencies": {
     "typescript": "^5.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.9.4",
+    "barrelsby": "^2.8.1"
   }
 }
