@@ -1,5 +1,5 @@
 {
-  "name": "tsgraph",
+  "name": "typescript-graph",
   "author": "Les Fabricants",
   "repository": "git@github.com:LesFabricants/typescript-graph.git",
   "version": "1.0.0",
@@ -11,14 +11,12 @@
     "dist/"
   ],
   "scripts": {
-    "prebuild": "barrelsby -d src --delete",
     "build": "npx tsc"
   },
   "dependencies": {
     "typescript": "^5.3.2"
   },
   "devDependencies": {
-    "@types/node": "^20.9.4",
-    "barrelsby": "^2.8.1"
+    "@types/node": "^20.9.4"
   }
 }
