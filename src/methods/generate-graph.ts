@@ -1,6 +1,8 @@
 import * as ts from "typescript";
+import { Node } from "../types/node";
+import { TypedFlatGraph } from "../types/typedGraph";
 
-export function generateGraph(inputDir: string) {
+export default function generateGraph(inputDir: string): TypedFlatGraph {
   const configPath = ts.findConfigFile(inputDir, ts.sys.fileExists);
   if (!configPath) {
     throw new Error('Could not find a valid "tsconfig.json".');
@@ -24,7 +26,7 @@ export function generateGraph(inputDir: string) {
     .filter((node) => !node.fileName.includes("node_modules"))
     .map((node) => {
       const fileName = node.fileName;
-      const dependencies: string[] = [];
+      const dependencies: Node[] = [];
 
       ts.forEachChild(node, (childNode) => {
         if (!ts.isImportDeclaration(childNode)) return;
@@ -35,13 +37,19 @@ export function generateGraph(inputDir: string) {
           options,
           ts.sys
         );
-        if (
-          fullName.resolvedModule?.isExternalLibraryImport ||
-          !fullName.resolvedModule
-        )
-          return;
+        if (!fullName.resolvedModule) return;
 
-        dependencies.push(fullName.resolvedModule.resolvedFileName);
+        dependencies.push(
+          fullName.resolvedModule.isExternalLibraryImport
+            ? {
+                key: fullName.resolvedModule.packageId?.name!,
+                type: "dependency",
+              }
+            : {
+                key: fullName.resolvedModule.resolvedFileName,
+                type: "internal",
+              }
+        );
       });
 
       return {
@@ -52,6 +60,6 @@ export function generateGraph(inputDir: string) {
 
   return sources.reduce(
     (prev, cur) => ({ ...prev, [cur.fileName]: cur.dependencies }),
-    {}
+    {} as TypedFlatGraph
   );
 }
