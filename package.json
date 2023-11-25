@@ -1,7 +1,7 @@
 {
-  "name": "typescript-graph",
+  "name": "typescript-source-graph",
   "author": "Les Fabricants",
-  "repository": "git@github.com:LesFabricants/typescript-graph.git",
+  "repository": "git@github.com:LesFabricants/typescript-source-graph.git",
   "version": "0.0.0",
   "description": "",
   "license": "MTI",
