@@ -2,7 +2,7 @@
   "name": "typescript-graph",
   "author": "Les Fabricants",
   "repository": "git@github.com:LesFabricants/typescript-graph.git",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "license": "MTI",
   "main": "dist/index.js",
@@ -18,5 +18,14 @@
   },
   "devDependencies": {
     "@types/node": "^20.9.4"
+  },
+  "release": {
+    "branches": [
+      "main",
+      {
+        "name": "develop",
+        "prerelease": true
+      }
+    ]
   }
 }
